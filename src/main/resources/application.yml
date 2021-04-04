@@ -25,6 +25,19 @@ spring:
   #        all-namespaces: true
   application:
     name: delivery-service
+  cloud:
+    stream:
+      bindings:
+        inputOrderChange:
+          destination: orderChange
+          content-type: application/json
+      kafka:
+        binder:
+          brokers: shop-kafka.kafka.svc.cluster.local:9092
 
 server:
   port: 8080
+
+logging:
+  level:
+   com.msa.shop.delivery: debug
